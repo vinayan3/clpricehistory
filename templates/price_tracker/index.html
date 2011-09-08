@@ -1,0 +1,10 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+  <form action="results" method="post">
+    {% csrf_token %}
+    Find: <input type="text" name="prod_name"/>
+    <input type="submit" value="Submit" />
+  </form>
+</body>
+</html> 

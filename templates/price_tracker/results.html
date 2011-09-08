@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+{% if prodName %}
+<p> Product: {{ prodName }} </p>
+{% else %}
+<p> No query given </p>
+{% endif %}
+
+{% if avgPrice %}
+<p> Avgerage Price: $ {{ avgPrice }} </p>
+{% endif %}
+{% if numOfPosts %}
+<p> Number of posts: {{ numOfPosts }} </P>
+{% endif %}
+
+
+</body>
+</html> 
