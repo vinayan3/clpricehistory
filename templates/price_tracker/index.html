@@ -1,10 +1,23 @@
 <!DOCTYPE HTML>
 <html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}global.css"/>
+</head>
 <body>
-  <form action="results" method="post">
-    {% csrf_token %}
-    Find: <input type="text" name="prod_name"/>
-    <input type="submit" value="Submit" />
-  </form>
+  <h1 id="mainTitle">Craig's List Price History</h1>
+  <div id="searchBox">
+    <form action="results" method="post">
+      {% csrf_token %}
+      <div id="name">Enter a name of a product</div>
+      <div id="inputCont"><input type="text" name="prod_name"/></div>
+      <div><input type="submit" value="Submit" /></div>
+    </form>
+  </div>
+  <div id="footer">
+    <ul>
+      <li>About us</li>
+      <li>Contact us</li>
+    </ul>
+  </div>
 </body>
 </html> 

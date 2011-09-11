@@ -4,17 +4,15 @@
 
 {% if prodName %}
 <p> Product: {{ prodName }} </p>
+{% if numOfPosts > 0 %}
+<p> Number of posts: {{ numOfPosts }} </P>
+<p> Average Price: $ {{ avgPrice }} </p>
+{% else %}
+No posts found.
+{% endif %}
 {% else %}
 <p> No query given </p>
 {% endif %}
-
-{% if avgPrice %}
-<p> Average Price: $ {{ avgPrice }} </p>
-{% endif %}
-{% if numOfPosts %}
-<p> Number of posts: {{ numOfPosts }} </P>
-{% endif %}
-
 
 </body>
 </html> 

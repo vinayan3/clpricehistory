@@ -7,12 +7,16 @@ import os
 
 # Activate django-dbindexer for the default database
 DATABASES['native'] = DATABASES['default']
-DATABASES['default'] = {'ENGINE': 'dbindexer', 'TARGET': 'native'}
+DATABASES['default'] = {'ENGINE': 'dbindexer', 'TARGET': 'gae'}
+DATABASES['gae'] = {
+    'ENGINE': 'djangoappengine.db',
+}
 AUTOLOAD_SITECONF = 'indexes'
 
 SECRET_KEY = '=r-$b*8hglm+858&9t043hlm6-&6-3d3vfc4((7yd0dbrakhvi'
 
 INSTALLED_APPS = (
+    'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.auth',
@@ -40,6 +44,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.request',
     'django.core.context_processors.media',
+    "django.core.context_processors.static",
 )
 
 # This test runner captures stdout and associates tracebacks with their
@@ -50,3 +55,5 @@ ADMIN_MEDIA_PREFIX = '/media/admin/'
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), 'templates'),)
 
 ROOT_URLCONF = 'urls'
+
+STATIC_URL='/static/'

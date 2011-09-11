@@ -19,11 +19,17 @@ def results(request):
         prodName = request.POST['prod_name']
         
         postList =  Post.objects.filter(title=prodName)
-        postsWithPrice = filter(lambda x: x.price is not None, postList)
-        avgPrice = sum(map(lambda x: x.price, postsWithPrice)) / len(postsWithPrice)
+        avgPrice = None
+        numOfPosts = len(postList)
+
+        if len(postList) > 0 : 
+            postsWithPrice = filter(lambda x: x.price is not None, postList)
+            numOfPosts = len(postList)
+            avgPrice = sum(map(lambda x: x.price, postsWithPrice)) / numOfPosts
+
         context = Context ({
                 'avgPrice': avgPrice,
-                'numOfPosts': len(postsWithPrice),
+                'numOfPosts': numOfPosts,
                 'prodName': prodName
                 })
     else:
