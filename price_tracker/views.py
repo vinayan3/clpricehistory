@@ -17,19 +17,34 @@ def results(request):
 
     if 'prod_name' in request.POST:
         prodName = request.POST['prod_name']
+        mungedProdName = prodName.lower().strip()
         
-        postList =  Post.objects.filter(title=prodName)
-        avgPrice = None
-        numOfPosts = len(postList)
+        exactMatches = []
+        avgPriceExact = None
 
-        if len(postList) > 0 : 
-            postsWithPrice = filter(lambda x: x.price is not None, postList)
-            numOfPosts = len(postList)
-            avgPrice = sum(map(lambda x: x.price, postsWithPrice)) / numOfPosts
+        possibleMatches = []
+        
+        for i in Post.objects.all():
+            titleMunged = i.title.strip()
+            #handle spcaing between words; people sometimes add extra
+            titleMunged = ' '.join(titleMunged.split())
+            #case insensitive search
+            titleMunged = titleMunged.lower()
+            if titleMunged == mungedProdName:                
+                exactMatches.append(i)
+            else:
+                if titleMunged.find(mungedProdName) >= 0:
+                    possibleMatches.append(i)
+
+        if len(exactMatches) > 0 : 
+            exactMatches = filter(lambda x: x.price is not None, exactMatches)
+            avgPriceExact = sum(map(lambda x: x.price, exactMatches)) / len(exactMatches)
+        
 
         context = Context ({
-                'avgPrice': avgPrice,
-                'numOfPosts': numOfPosts,
+                'numExactMatches': len(exactMatches),
+                'avgPriceExact': avgPriceExact,
+                'possibleMatches': possibleMatches,
                 'prodName': prodName
                 })
     else:

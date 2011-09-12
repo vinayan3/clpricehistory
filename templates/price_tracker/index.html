@@ -1,7 +1,83 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}global.css"/>
+<style>
+<!--
+* {
+    font-family: sans-serif;
+}
+body  {
+    background-color: #ECE5D9;
+
+}
+h1#mainTitle {
+    text-align:center;
+    color: #777777;
+    font-size: 28px;
+}
+div#searchBox {
+    margin-left: auto;
+    margin-right: auto;
+    width: 35em;
+    text-align:center;
+    height: 9em; 
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #CCCCCC;
+    font-size: 16px;
+
+}
+
+div#name {
+    padding-top: 1em;
+}
+div#searchBox div {
+    padding-bottom: 1em;
+}
+
+
+div#inputCont input { 
+    font-size:18px;
+    width: 20em;
+    border: 1px solid #CCCCCC;
+}
+div#searchBox input[type=submit] {
+    background-color: #4e9f1a;
+    color: #FFFFFF;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+    border-style:none;
+    border-radius: 5px 5px 5px 5px;
+    height:2em;
+    width: 8em;
+    font-size:14px;
+}
+
+div#searchBox input[type=submit]:hover {
+    background-color: #62bc28;
+}
+
+div#footer {
+    font-size: 14px;
+    text-align: center;
+    
+}
+
+div#footer li {
+    display: inline;
+    list-style-type: none;
+}
+
+#footer li:before {
+    content: "| "; 
+}
+#footer li:first-child:before { 
+    content: "";
+}
+
+-->
+</style>
 </head>
 <body>
   <h1 id="mainTitle">Craig's List Price History</h1>

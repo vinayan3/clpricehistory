@@ -1,18 +1,71 @@
 <!DOCTYPE HTML>
 <html>
-<body>
+<head>
+<style>
+<!--
+* {
+    font-family: sans-serif;
+}
+body  {
+    background-color: #ECE5D9;
 
+}
+
+div#resultsBox {
+    margin-left: auto;
+    margin-right: auto;
+    width: 35em;
+    text-align:center;
+    min-height: 9em;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #CCCCCC;
+    font-size: 16px;
+}
+#resultsBox div {
+padding-bottom: 1em;
+text-align:center;
+}
+#prodName {
+padding-top: 1em;
+text-align: left;
+
+}
+
+#possibleMatches  {
+margin-left: auto;
+margin-right: auto;
+width:20em;
+}
+
+#possibleMatches li {
+text-align: left;
+}
+-->
+</style>
+</head>
+<body>
+<div id="resultsBox">
 {% if prodName %}
-<p> Product: {{ prodName }} </p>
-{% if numOfPosts > 0 %}
-<p> Number of posts: {{ numOfPosts }} </P>
-<p> Average Price: $ {{ avgPrice }} </p>
+<div id="prodName"> Product: {{ prodName }} </div>
+{% if numExactMatches > 0 %}
+<p> Number of posts: {{ numExactMatches }} </P>
+<p> Average Price: $ {{ avgPriceExact }} </p>
 {% else %}
-No posts found.
+<div>No products were found.</div>
 {% endif %}
+<div id="possibleMatches">
+  <p>Possible other matches</p>
+  <ul>
+    {% for pM in possibleMatches %}
+    <li> {{ pM.title }} </li>
+    {% endfor %}
+    </ul>
+</div>
 {% else %}
 <p> No query given </p>
 {% endif %}
-
+<div>
 </body>
 </html> 
