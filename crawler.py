@@ -1,8 +1,10 @@
 from BeautifulSoup import BeautifulSoup
 import urllib2, random, re, sqlite3, logging
 import urlparse
+import handler
+import price_tracker.dbindexes
+import price_tracker.models
 import time
-import list_parser
 import traceback
 import sys
 
@@ -41,8 +43,20 @@ class WebCrawler:
                         
                 soup = BeautifulSoup(page)
 
-                for i in list_parser.parse(soup):
-                    i.save()
+                for i in handler.handle(soup):
+                    samePosts = price_tracker.models.Post.objects.all().filter(
+                        title=i.title,
+                        price=i.price,
+                        neighborhood=i.neighborhood,
+                        subCraigsList=i.subCraigsList,
+                        section=i.section,
+                        date=i.date)
+                    
+                    if len(samePosts) == 0:
+                        logging.debug("saving %s" %i.title)
+                        i.save()
+                    else:
+                        loggging.debug("duplicate %s" % i.title)
                 
             except Exception as e:
                 logging.debug("Failed to parse, attempting to get next URL from DB")

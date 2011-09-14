@@ -10,7 +10,7 @@ urlpatterns = patterns(
     '',
     (r'^admin/', include(admin.site.urls)),
     (r'results', price_tracker.views.results),
-    (r'^$', price_tracker.views.index)
-#    ('^$', 'django.views.generic.simple.direct_to_template',
-#     {'template': 'home.html'}),
+    (r'^$', price_tracker.views.index),
+    ('aboutus', 'django.views.generic.simple.direct_to_template',
+     {'template': 'price_tracker/aboutus.html'}),
 )

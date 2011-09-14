@@ -15,18 +15,30 @@ h1#mainTitle {
     color: #777777;
     font-size: 28px;
 }
-div#searchBox {
+div.box {
     margin-left: auto;
     margin-right: auto;
     width: 35em;
     text-align:center;
-    height: 9em; 
     background: none repeat scroll 0 0 #FFFFFF;
     border-radius: 15px 15px 15px 15px;
     box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
     border: 1px solid #CCCCCC;
     font-size: 16px;
+    margin-bottom: 2em;
+}
+span.redAsterix {
+color: #FF0000;
+}
+div#searchBox {
+    height: 9em; 
+}
 
+div#disclaimer {
+padding: .5em .5em .5em .5em;
+}
+div#disclaimer p {
+font-size: 10px;
 }
 
 div#name {
@@ -81,18 +93,20 @@ div#footer li {
 </head>
 <body>
   <h1 id="mainTitle">Craig's List Price History</h1>
-  <div id="searchBox">
+  <div id="searchBox" class="box">
     <form action="results" method="post">
       {% csrf_token %}
-      <div id="name">Enter a name of a product</div>
+      <div id="name">Enter a name of a product <span class="redAsterix">*</span></div>
       <div id="inputCont"><input type="text" name="prod_name"/></div>
       <div><input type="submit" value="Submit" /></div>
     </form>
   </div>
+  <div id="disclaimer" class="box">
+    <p><span class="redAsterix"> * </span>Currently only the furniture section of Craig's list is being indexed. Currently search has been optimized for Ikea point products such as Ikea Malm.</p>
+    </div>
   <div id="footer">
     <ul>
-      <li>About us</li>
-      <li>Contact us</li>
+      <li><a href='aboutus'>About us</a></li>
     </ul>
   </div>
 </body>
